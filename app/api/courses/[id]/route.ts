@@ -27,7 +27,7 @@ export async function GET(
     if (!course) {
       return NextResponse.json({ error: "Course not found." }, { status: 404 });
     }
-
+    console.log(course);
     return NextResponse.json(course, { status: 200 });
   } catch (error) {
     console.error("Error retrieving course:", error);
@@ -76,7 +76,7 @@ export async function PUT(
     if (!result.acknowledged) {
       throw new Error("Failed to update course");
     }
-
+    console.log(result);
     return NextResponse.json(updatedCourse, { status: 200 });
   } catch (error) {
     console.error("Error updating course:", error);
@@ -120,6 +120,7 @@ export async function DELETE(
       throw new Error("Failed to update course");
     }
 
+    console.log(result);
     return NextResponse.json(
       { message: `Course with ID ${courseId} deleted.` },
       { status: 200 }

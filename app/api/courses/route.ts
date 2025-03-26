@@ -8,7 +8,7 @@ export async function GET() {
     const client = await clientPromise;
     const db = client.db("coursesDb");
     const courses = await db.collection("courses").find({}).toArray();
-
+    console.log(courses);
     return NextResponse.json(courses, { status: 200 });
   } catch (error) {
     console.error("Error retrieving courses:", error);
@@ -34,7 +34,7 @@ export async function POST(request: Request) {
 
     const courseToInsert = { ...newCourse, id: nextId };
     const result = await db.collection("courses").insertOne(courseToInsert);
-
+    console.log(result);
     if (!result.acknowledged) {
       throw new Error("Failed to insert course");
     }
